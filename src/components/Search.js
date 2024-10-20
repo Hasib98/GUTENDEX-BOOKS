@@ -1,7 +1,3 @@
 export default function Search() {
-  return (
-    <div>
-      <input className="" type="text" />
-    </div>
-  );
+  return <div className="h-96 w-96 bg-black"></div>;
 }
