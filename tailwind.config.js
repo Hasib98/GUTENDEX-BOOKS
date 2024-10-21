@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         vastshadow: ["Vast Shadow", "serif"],
+        nunito: ["Nunito", "sans-serif"],
       },
     },
   },

@@ -1,12 +1,7 @@
-import Search from "./Search";
-import Title from "./Title";
-
-export default function Navbar() {
+export default function Navbar({ children }) {
   return (
-    <div className=" bg-gray-300 flex items-center justify-between ">
-      <Title />
-      <Search />
-      <div>Count: 12</div>
+    <div className="h-14 bg-amber-400 flex items-center justify-between p-4 rounded-md mb-8">
+      {children}
     </div>
   );
 }
