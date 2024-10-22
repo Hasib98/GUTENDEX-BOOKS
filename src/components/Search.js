@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { defineURL } from "../utils/utils";
-export default function Search({ query, onSetQuery }) {
+export default function Search({ pageNumber, onsetPageNumber, onSetQuery }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All categories");
-  const url = defineURL(search, category);
+
+  useEffect(() => {
+    onsetPageNumber(1);
+  }, [search, category, onsetPageNumber]);
+
+  const url = defineURL(search, category, pageNumber);
 
   useEffect(() => {
     onSetQuery(url);

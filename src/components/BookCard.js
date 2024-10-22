@@ -55,34 +55,34 @@ export default function BookCard({ book, index }) {
         </p>
       </div>
       <div className="flex w-fit gap-3 absolute bottom-3 right-3 ">
-        <div class="bg bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-500 rounded-full">
+        <div className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-500 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 text-amber-500"
+            className="h-6 w-6 text-amber-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
             />
           </svg>
         </div>
-        <div class="bg bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-500 rounded-full">
+        <div className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-500 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 text-amber-500"
+            className="h-6 w-6 text-amber-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"
             />
           </svg>
@@ -92,8 +92,7 @@ export default function BookCard({ book, index }) {
   );
 }
 
-// {
-//   /* <svg
+//  <svg
 //   xmlns="http://www.w3.org/2000/svg"
 //   class="h-6 w-6 text-amber-500"
 //   fill="none"
@@ -101,13 +100,13 @@ export default function BookCard({ book, index }) {
 //   stroke="currentColor"
 // >
 //   <path
-//     stroke-linecap="round"
-//     stroke-linejoin="round"
-//     stroke-width="2"
+//     strokeLinecap="round"
+//     strokeLinejoin="round"
+//     strokeWidth="2"
 //     d="M5 13l4 4L19 7"
 //   />
-// </svg> */
-// }
+// </svg>
+
 // originalArray.filter(item => item.startsWith("Browsing:")).map(item => item.replace("Browsing: ", ""))
 
 // <svg
@@ -118,9 +117,9 @@ export default function BookCard({ book, index }) {
 //   stroke="currentColor"
 // >
 //   <path
-//     stroke-linecap="round"
-//     stroke-linejoin="round"
-//     stroke-width="2"
+//     strokeLinecap="round"
+//     strokeLinejoin="round"
+//     strokeWidth="2"
 //     d="M15 19l-7-7 7-7"
 //   />
 // </svg>
@@ -133,9 +132,9 @@ export default function BookCard({ book, index }) {
 //   stroke="currentColor"
 // >
 //   <path
-//     stroke-linecap="round"
-//     stroke-linejoin="round"
-//     stroke-width="2"
+//     strokeLinecap="round"
+//     strokeLinejoin="round"
+//     strokeWidth="2"
 //     d="M9 5l7 7-7 7"
 //   />
 // </svg>

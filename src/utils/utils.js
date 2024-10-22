@@ -1,14 +1,20 @@
-export function defineURL(search, category) {
+export function defineURL(search, category, pageNumber) {
   if (!search && category === "All categories") {
-    return `https://gutendex.com/books`;
+    return `https://gutendex.com/books${
+      pageNumber > 1 ? `?page=${pageNumber}` : ""
+    }`;
   } else if (!search && category !== "All categories") {
-    return `https://gutendex.com/books?topic=${category}`;
+    return `https://gutendex.com/books?${
+      pageNumber > 1 ? `page=${pageNumber}&` : ""
+    }topic=${category}`;
   } else if (search && category === "All categories") {
-    return `https://gutendex.com/books?search=${encodeURI(search)}`;
+    return `https://gutendex.com/books?${
+      pageNumber > 1 ? `page=${pageNumber}&` : ""
+    }search=${encodeURI(search)}`;
   } else if (search && category !== "All categories") {
-    return `https://gutendex.com/books?search=${encodeURI(
-      search
-    )}&topic=${category}`;
+    return `https://gutendex.com/books?${
+      pageNumber > 1 ? `page=${pageNumber}&` : ""
+    }search=${encodeURI(search)}&topic=${category}`;
   }
 }
 
