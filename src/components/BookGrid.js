@@ -1,7 +1,7 @@
 import React from "react";
 import BookCard from "./BookCard";
 
-export default function BookGrid({ books }) {
+export default function BookGrid({ books = null }) {
   return (
     <div className="p-8">
       <div className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">

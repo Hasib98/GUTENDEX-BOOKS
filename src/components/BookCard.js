@@ -5,12 +5,14 @@ export default function BookCard({ book }) {
     <div className="bg-blue-100 rounded-lg shadow-lg p-4 max-w-56">
       {/* Book Cover Image */}
       <img
-        src={book.coverUrl}
+        src={
+          book.coverUrl ? book.coverUrl : `${process.env.PUBLIC_URL}/cover.jpg`
+        }
         alt={book.title}
         className="w-full h-48 object-contain rounded-md mb-4"
       />
 
-      <div></div>
+      {/* <div></div> */}
 
       {/* Book Title */}
       <div className="text-xl font-semibold text-gray-800 mb-2">
