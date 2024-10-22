@@ -8,8 +8,9 @@ import NumResults from "./components/NumResults";
 
 export default function App() {
   const [query, setQuery] = useState("");
+  console.log(query);
   const { data, loading, error } = useFetch(query);
-  console.log(loading);
+  console.log(data, loading, error);
 
   return (
     <>
@@ -28,7 +29,7 @@ export default function App() {
 
 function Loader() {
   return (
-    <p className="loader">Please wait API response is Slow loading...⏳</p>
+    <p className="text-3xl">Please wait API response is Slow (loading...⏳)</p>
   );
 }
 function ErrorMessage({ message }) {
