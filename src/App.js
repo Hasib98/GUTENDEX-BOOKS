@@ -8,6 +8,8 @@ import NumResults from "./components/NumResults";
 
 export default function App() {
   const [query, setQuery] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+
   console.log(query);
   const { data, loading, error } = useFetch(query);
   console.log(data, loading, error);

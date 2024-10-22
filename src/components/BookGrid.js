@@ -8,6 +8,7 @@ export default function BookGrid({ books = null }) {
         {books?.map((book, index) => (
           <BookCard
             key={index}
+            index={index}
             book={{
               coverUrl: book.formats["image/jpeg"], // Access the image URL here
               title: book.title,

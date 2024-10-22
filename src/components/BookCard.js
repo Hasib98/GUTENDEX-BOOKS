@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import { cleaningGenreData } from "../utils/utils";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, index }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Use effect to control when each card becomes visible with a delay
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, index * 100); // Delay each card by index * 100ms
+    return () => clearTimeout(timeout);
+  }, [index]);
   return (
-    <div className="relative bg-amber-50 rounded-lg card-shadow hover:scale-95 duration-150 max-w-56 border-2 border-yellow-500">
+    // <div className="relative bg-amber-50 rounded-lg card-shadow hover:scale-95 duration-150 max-w-56 border-2 border-yellow-500">
+    <div
+      className={`relative bg-amber-50 rounded-lg card-shadow border-2 border-yellow-500 transition-all duration-300 transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      } max-w-56 hover:scale-95`}
+    >
       {/* Book Cover Image */}
       <div className="  bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-br-lg italic font-bold text-sm border-b-2 border-r-2 border-yellow-500">
         {`# ${book.id}`}
@@ -94,3 +109,33 @@ export default function BookCard({ book }) {
 // </svg> */
 // }
 // originalArray.filter(item => item.startsWith("Browsing:")).map(item => item.replace("Browsing: ", ""))
+
+// <svg
+//   xmlns="http://www.w3.org/2000/svg"
+//   class="h-6 w-6 text-amber-500"
+//   fill="none"
+//   viewBox="0 0 24 24"
+//   stroke="currentColor"
+// >
+//   <path
+//     stroke-linecap="round"
+//     stroke-linejoin="round"
+//     stroke-width="2"
+//     d="M15 19l-7-7 7-7"
+//   />
+// </svg>
+
+// <svg
+//   xmlns="http://www.w3.org/2000/svg"
+//   class="h-6 w-6 text-amber-500"
+//   fill="none"
+//   viewBox="0 0 24 24"
+//   stroke="currentColor"
+// >
+//   <path
+//     stroke-linecap="round"
+//     stroke-linejoin="round"
+//     stroke-width="2"
+//     d="M9 5l7 7-7 7"
+//   />
+// </svg>
