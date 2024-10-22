@@ -7,12 +7,20 @@
 @tailwind utilities;
 
 body {
-    @apply bg-amber-50;
+    @apply bg-yellow-50;
     /* background: #F7F2E9; */
     padding: 1rem;
 }
 
 
 .card-shadow {
-    box-shadow: 5px 5px 10px 5px rgba(217, 185, 103, 0.516);
+    box-shadow: 5px 5px 10px 1px rgba(217, 185, 103, 0.516);
+}
+
+.card-shadow-hover {
+    box-shadow: 15px 15px 10px 10px rgba(34, 24, 0, 0.516);
+}
+
+.btn-shadow {
+    box-shadow: inset 1px 1px 1px 1px rgb(255, 247, 159);
 }

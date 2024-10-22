@@ -17,12 +17,15 @@ export default function Search({ query, onSetQuery }) {
     "Adventure",
     "Culture",
     "Mystery",
+    "Geography",
+    "Civilization",
+    "Poetry",
   ];
   return (
     <div className="flex  focus:ring-2  focus:ring-slate-500">
       <input
         type="text"
-        placeholder="Search for books"
+        placeholder="Search books by 'Title or the 'Author' name"
         value={search}
         className="h-8 w-96 p-4  rounded-l-full focus:outline-none  border-yellow-400 border-2 font-nunito"
         onChange={(e) => setSearch(e.target.value)}

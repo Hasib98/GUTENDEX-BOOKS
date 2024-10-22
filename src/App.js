@@ -29,7 +29,7 @@ export default function App() {
 
 function Loader() {
   return (
-    <p className="text-3xl">Please wait API response is Slow (loading...⏳)</p>
+    <p className="text-3xl">Please wait API response is Slow (loading..⏳)</p>
   );
 }
 function ErrorMessage({ message }) {

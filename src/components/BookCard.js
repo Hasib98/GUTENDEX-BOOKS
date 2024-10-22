@@ -1,70 +1,96 @@
 import React from "react";
+import { cleaningGenreData } from "../utils/utils";
 
 export default function BookCard({ book }) {
   return (
-    <div className="bg-blue-100 rounded-lg shadow-lg p-4 max-w-56">
+    <div className="relative bg-amber-50 rounded-lg card-shadow hover:scale-95 duration-150 max-w-56 border-2 border-yellow-500">
       {/* Book Cover Image */}
-      <img
-        src={
-          book.coverUrl ? book.coverUrl : `${process.env.PUBLIC_URL}/cover.jpg`
-        }
-        alt={book.title}
-        className="w-full h-48 object-contain rounded-md mb-4"
-      />
-
-      {/* <div></div> */}
-
-      {/* Book Title */}
-      <div className="text-xl font-semibold text-gray-800 mb-2">
-        {book.title}
+      <div className="  bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-br-lg italic font-bold text-sm border-b-2 border-r-2 border-yellow-500">
+        {`# ${book.id}`}
       </div>
+      <div className="p-4">
+        <img
+          src={
+            book.coverUrl
+              ? book.coverUrl
+              : `${process.env.PUBLIC_URL}/cover.jpg`
+          }
+          alt={book.title.split(" ").slice(0, 15).join(" ")}
+          className="w-full h-48 object-contain rounded-md mb-4"
+        />
 
-      {/* Author Name */}
-      <p className="text-sm text-gray-600 mb-2">
-        <span className="font-semibold">Author:</span> {book.author}
-      </p>
+        {/* <div></div> */}
 
-      {/* Book Genre */}
-      <p className="text-sm text-gray-600 italic mb-2">
-        <span className="font-semibold">Genre:</span> {book.genre.join(", ")}
-      </p>
+        {/* Book Title */}
+        <div className="text-xl font-semibold text-gray-800 mb-2">
+          {book.title.split(" ").length > 15
+            ? book.title.split(" ").slice(0, 10).join(" ") + "..."
+            : book.title}
+        </div>
 
-      {/* Book ID */}
-      <p className="text-xs text-gray-500">
-        <span className="font-semibold">Book ID:</span> {book.id}
-      </p>
+        {/* Author Name */}
+        <p className="text-sm text-gray-600 mb-2">
+          <span className="font-semibold">Author:</span> {book.author || "N/A"}
+        </p>
+
+        {/* Book Genre */}
+        <p className="text-sm text-gray-600 italic mb-2 pb-10">
+          <span className="font-semibold">Genre:</span>{" "}
+          {cleaningGenreData(book.genre)}
+        </p>
+      </div>
+      <div className="flex w-fit gap-3 absolute bottom-3 right-3 ">
+        <div class="bg bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-500 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-amber-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            />
+          </svg>
+        </div>
+        <div class="bg bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-500 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-amber-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
-
-    // <div className="bg-white rounded-b-xl overflow-hidden card-shadow max-w-52">
-    //   {/* Book Cover Image */}
-    //   <img
-    //     src={book.coverUrl}
-    //     alt={book.title}
-    //     className="w-full h-64 object-contain"
-    //   />
-
-    //   {/* Book Details */}
-    //   <div className="p-4">
-    //     {/* Book Title */}
-    //     <h2 className="text-xl font-semibold text-gray-800 mb-2">
-    //       {book.title}
-    //     </h2>
-
-    //     {/* Author Name */}
-    //     <p className="text-sm text-gray-600 mb-2">
-    //       <span className="font-semibold">Author:</span> {book.author}
-    //     </p>
-
-    //     {/* Book Genre */}
-    //     <p className="text-sm text-gray-600 italic mb-2">
-    //       <span className="font-semibold">Genre:</span> {book.genre.join(", ")}
-    //     </p>
-
-    //     {/* Book ID */}
-    //     <p className="text-xs text-gray-500">
-    //       <span className="font-semibold">Book ID:</span> {book.id}
-    //     </p>
-    //   </div>
-    // </div>
   );
 }
+
+// {
+//   /* <svg
+//   xmlns="http://www.w3.org/2000/svg"
+//   class="h-6 w-6 text-amber-500"
+//   fill="none"
+//   viewBox="0 0 24 24"
+//   stroke="currentColor"
+// >
+//   <path
+//     stroke-linecap="round"
+//     stroke-linejoin="round"
+//     stroke-width="2"
+//     d="M5 13l4 4L19 7"
+//   />
+// </svg> */
+// }
+// originalArray.filter(item => item.startsWith("Browsing:")).map(item => item.replace("Browsing: ", ""))
