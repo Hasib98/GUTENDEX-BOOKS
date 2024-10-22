@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 
-export function useFetch(url) {
+export function useFetch(query) {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(
     function () {
-      // setData(null);
       const controller = new AbortController();
 
-      setLoading(true);
       async function fetchData() {
         try {
+          setLoading(true);
+
           setError(null);
 
-          const response = await fetch(url, { signal: controller.signal });
-          console.log(response);
+          const response = await fetch(query, { signal: controller.signal });
 
           if (!response.ok) {
             throw new Error("Failed to fetch data");
           }
           const result = await response.json();
-          if (result.next === null) throw new Error("Books not found");
+          if (result.count === 0) throw new Error("Books are not avaiable");
           setData(result);
           setError(null);
         } catch (err) {
@@ -30,17 +29,20 @@ export function useFetch(url) {
             setError(err.message);
           }
         } finally {
-          setLoading(false);
-          console.log("test");
+          if (!controller.signal.aborted) {
+            setLoading(false);
+          }
         }
       }
 
       fetchData();
       return function () {
         controller.abort();
+        setData(null);
+        // setLoading(true);
       };
     },
-    [url]
+    [query]
   );
 
   return { data, loading, error };
