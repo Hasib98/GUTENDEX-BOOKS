@@ -12,14 +12,13 @@ export default function Search({
   const [category, setCategory] = useState("All categories");
 
   useEffect(() => {
-    console.log("called");
     if (isHomeBtnClicked) {
       setSearch("");
       setCategory("All categories");
       onsetPageNumber(1);
     }
     return () => onHomebtnClicked(false);
-  }, [isHomeBtnClicked, onsetPageNumber]);
+  }, [isHomeBtnClicked, onsetPageNumber, onHomebtnClicked]);
 
   useEffect(() => {
     onsetPageNumber(1);
@@ -49,12 +48,16 @@ export default function Search({
       </div>
     );
   return (
-    <div className="flex  focus:ring-2  focus:ring-slate-500">
+    <div
+      className="pt-4 sm:pt-0 w-11/12 sm:w-auto flex  focus:ring-2  focus:ring-slate-500"
+      // className="flex focus:ring-2  focus:ring-slate-500"
+    >
       <input
         type="text"
         placeholder="Search books by 'Title or the 'Author' name"
         value={search}
-        className="h-8 w-96 p-4  rounded-l-full focus:outline-none  border-yellow-400 border-2 font-nunito"
+        className="h-8 w-3/4 sm:w-96 p-4  rounded-l-full focus:outline-none  border-yellow-400 border-2 font-nunito"
+        // className="h-8 w-96 p-4  rounded-l-full focus:outline-none  border-yellow-400 border-2 font-nunito"
         onChange={(e) => setSearch(e.target.value)}
       />
       <select
