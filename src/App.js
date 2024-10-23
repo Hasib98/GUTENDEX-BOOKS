@@ -5,13 +5,27 @@ import { useFetch } from "./hooks/useFetch";
 import Search from "./components/Search";
 import Title from "./components/Title";
 import NumResults from "./components/NumResults";
+import Wishlist from "./components/Wishlist";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import WishlistBookGrid from "./components/WishlistBookGrid";
 
 export default function App() {
   const [query, setQuery] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
+  const [isWishlistButtonClicked, setIsWishlistButtonClicked] = useState(false);
 
-  console.log(query);
   const { data, loading, error } = useFetch(query);
+
+  const [wishlist, setWishlist] = useLocalStorage([], "wishlist");
+
+  const ids = wishlist.map((book) => book.id);
+
+  function handleAddWishlist(book) {
+    setWishlist((wishlist) => [...wishlist, book]);
+  }
+  function handleDeleteWishlist(id) {
+    setWishlist((wishlist) => wishlist.filter((book) => book.id !== id));
+  }
 
   return (
     <>
@@ -21,31 +35,56 @@ export default function App() {
           pageNumber={pageNumber}
           onsetPageNumber={setPageNumber}
           onSetQuery={setQuery}
+          isWishlistButtonClicked={isWishlistButtonClicked}
         />
+        {/* <Wishlist
+          onWishlistButtonClicked={setIsWishlistButtonClicked}
+          wishlist={wishlist}
+        /> */}
         <NumResults count={data?.count} />
       </Navbar>
-      <div className="bg-red-200 flex justify-center">
-        <Pagination>
-          <LeftArrow onSetPageNumber={setPageNumber} />
-          {Array.from({ length: 5 }, (_, i) => (
-            <MiddleButton
-              key={i}
-              value={pageNumber <= 5 ? i + 1 : pageNumber - 4 + i}
-              pageNumber={pageNumber}
-              onSetPageNumber={setPageNumber}
-            />
-          ))}
-          <RightArrow
-            data={data}
-            onSetPageNumber={setPageNumber}
-            onSetQuery={setQuery}
-          />
-        </Pagination>
+      {/* >>>>>>>>>>>>>>> */}
+      <div
+        className={`relative ${
+          isWishlistButtonClicked ? "opacity-40 pointer-events-none" : ""
+        }`}
+      >
+        <PaginationGroup
+          onSetPageNumber={setPageNumber}
+          pageNumber={pageNumber}
+          data={data}
+          onSetQuery={setQuery}
+        />
       </div>
-
-      {loading && <Loader />}
-      {!loading && !error && data && <BookGrid books={data.results} />}
-      {error && <ErrorMessage message={error} />}
+      {isWishlistButtonClicked ? (
+        <WishlistBookGrid
+          books={wishlist}
+          onDeleteWishlist={handleDeleteWishlist}
+        />
+      ) : (
+        <>
+          {loading && <Loader />}
+          {!loading && !error && data && (
+            <BookGrid
+              books={data.results}
+              onAddWishlist={handleAddWishlist}
+              onDeleteWishlist={handleDeleteWishlist}
+              ids={ids}
+            />
+          )}
+          {error && <ErrorMessage message={error} />}
+          {loading || (
+            <div className="flex justify-center">
+              <PaginationGroup
+                onSetPageNumber={setPageNumber}
+                pageNumber={pageNumber}
+                data={data}
+                onSetQuery={setQuery}
+              />
+            </div>
+          )}
+        </>
+      )}
     </>
   );
 }
@@ -88,9 +127,9 @@ function LeftArrow({ onSetPageNumber }) {
     </button>
   );
 }
-function RightArrow({ data, onSetQuery, onSetPageNumber }) {
+function RightArrow({ data, onSetPageNumber }) {
   function handleClick() {
-    onSetPageNumber((e) => e + 10);
+    onSetPageNumber((e) => data?.next && e + 1);
     // onSetQuery(data?.next);
   }
   return (
@@ -117,7 +156,16 @@ function RightArrow({ data, onSetQuery, onSetPageNumber }) {
 }
 function Loader() {
   return (
-    <p className="text-3xl">Please wait API response is Slow (loading..⏳)</p>
+    <div className="flex flex-col  gap-10 items-center justify-center min-h-screen">
+      <div className="text-3xl">
+        Please wait, Sometimes It takes time load the Books (loading..⏳)
+      </div>
+      <div className="flex space-x-2">
+        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-100"></div>
+        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-500"></div>
+        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-1000"></div>
+      </div>
+    </div>
   );
 }
 function ErrorMessage({ message }) {
@@ -125,5 +173,28 @@ function ErrorMessage({ message }) {
     <p className="error">
       <span>🚨</span> {message}
     </p>
+  );
+}
+
+function PaginationGroup({ pageNumber, onSetPageNumber, onSetQuery, data }) {
+  return (
+    // <div className="bg-red-200 flex justify-center">
+    <Pagination>
+      <LeftArrow onSetPageNumber={onSetPageNumber} />
+      {Array.from({ length: 5 }, (_, i) => (
+        <MiddleButton
+          key={i}
+          value={pageNumber <= 5 ? i + 1 : pageNumber - 4 + i}
+          pageNumber={pageNumber}
+          onSetPageNumber={onSetPageNumber}
+        />
+      ))}
+      <RightArrow
+        data={data}
+        onSetPageNumber={onSetPageNumber}
+        onSetQuery={onSetQuery}
+      />
+    </Pagination>
+    // </div>
   );
 }

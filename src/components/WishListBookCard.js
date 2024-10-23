@@ -1,34 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { cleaningGenreData } from "../utils/utils";
-
-export default function BookCard({
-  book,
-  index,
-  onAddWishlist,
-  onDeleteWishlist,
-  isAdded,
-}) {
+export default function WishlistBookCard({ book, index, onDeleteWishlist }) {
   const [isVisible, setIsVisible] = useState(false);
 
-  function handleAdd() {
-    const newAddedBook = {
-      id: book.id,
-      coverUrl: book.coverUrl
-        ? book.coverUrl
-        : `${process.env.PUBLIC_URL}/cover.jpg`,
-      title:
-        book.title.split(" ").length > 15
-          ? book.title.split(" ").slice(0, 10).join(" ") + "..."
-          : book.title,
-      author: book.author || "N/A",
-      genre: cleaningGenreData(book.genre),
-    };
-
-    onAddWishlist(newAddedBook);
-  }
-
-  function handleRemove() {
+  function handleClick() {
     onDeleteWishlist(book.id);
   }
 
@@ -36,16 +11,34 @@ export default function BookCard({
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(true);
-    }, index * 100); // Delay each card by index * 100ms
+    }, index * 50); // Delay each card by index * 100ms
     return () => clearTimeout(timeout);
   }, [index]);
   return (
-    // <div className="relative bg-amber-50 rounded-lg card-shadow hover:scale-95 duration-150 max-w-56 border-2 border-yellow-500">
     <div
       className={`relative bg-amber-50 rounded-lg card-shadow border-2 border-yellow-500 transition-all duration-300 transform ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      } max-w-56 hover:scale-105`}
+      } max-w-56 hover:scale-95`}
     >
+      <button
+        className="absolute  -right-5 -top-5 bg-red-100 flex items-center justify-center flex-1 size-fit p-2 border  border-red-500 rounded-full"
+        onClick={handleClick}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-red-600"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
       {/* Book Cover Image */}
       <div className="  bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-br-lg italic font-bold text-sm border-b-2 border-r-2 border-yellow-500">
         {`# ${book.id}`}
@@ -77,52 +70,10 @@ export default function BookCard({
 
         {/* Book Genre */}
         <p className="text-sm text-gray-600 italic mb-2 pb-10">
-          <span className="font-semibold">Genre:</span>{" "}
-          {cleaningGenreData(book.genre)}
+          <span className="font-semibold">Genre:</span> {book.genre}
         </p>
       </div>
       <div className="flex w-fit gap-3 absolute bottom-3 right-3 ">
-        {!isAdded ? (
-          <button
-            className="flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full"
-            onClick={handleAdd}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-amber-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.682l1.318-1.364a4.5 4.5 0 116.364 6.364L12 21l-7.682-7.682a4.5 4.5 0 010-6.364z"
-              />
-            </svg>
-          </button>
-        ) : (
-          <button
-            className="bg-pink-200 flex items-center justify-center flex-1 size-fit p-2 border  border-pink-600 rounded-full"
-            onClick={handleRemove}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-pink-500"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.682l1.318-1.364a4.5 4.5 0 116.364 6.364L12 21l-7.682-7.682a4.5 4.5 0 010-6.364z"
-              />
-            </svg>
-          </button>
-        )}
         <div className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"

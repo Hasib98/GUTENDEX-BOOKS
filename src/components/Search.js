@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { defineURL } from "../utils/utils";
-export default function Search({ pageNumber, onsetPageNumber, onSetQuery }) {
+export default function Search({
+  pageNumber,
+  onsetPageNumber,
+  onSetQuery,
+  isWishlistButtonClicked,
+}) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All categories");
 
@@ -19,13 +24,18 @@ export default function Search({ pageNumber, onsetPageNumber, onSetQuery }) {
     "Literature",
     "Fiction",
     "History",
-    "Adventure",
     "Culture",
     "Mystery",
     "Geography",
     "Civilization",
     "Poetry",
   ];
+  if (isWishlistButtonClicked)
+    return (
+      <div className="text-3xl font-nunito font-extrabold text-gray-900">
+        My Wishlist 📃
+      </div>
+    );
   return (
     <div className="flex  focus:ring-2  focus:ring-slate-500">
       <input
