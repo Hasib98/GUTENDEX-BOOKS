@@ -50,17 +50,15 @@ export default function App() {
         <NumResults count={data?.count} />
       </Navbar>
       {/* >>>>>>>>>>>>>>> */}
-      <div
-        className={`relative ${
-          isWishlistButtonClicked ? "opacity-40 pointer-events-none" : ""
-        }`}
-      >
+      <div className="flex justify-center sm:justify-start sm:scale-100 scale-75">
+        {/* <div className=""> */}
         <PaginationGroup
           onSetPageNumber={setPageNumber}
           pageNumber={pageNumber}
           data={data}
           onSetQuery={setQuery}
         />
+        {/* </div> */}
       </div>
       {isWishlistButtonClicked ? (
         <WishlistBookGrid

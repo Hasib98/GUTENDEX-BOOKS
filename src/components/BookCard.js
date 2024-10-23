@@ -41,51 +41,53 @@ export default function BookCard({
     return () => clearTimeout(timeout);
   }, [index]);
   return (
-    // <div className="relative bg-amber-50 rounded-lg card-shadow hover:scale-95 duration-150 max-w-56 border-2 border-yellow-500">
     <div
-      className={`relative bg-amber-50 rounded-lg card-shadow border-2 border-yellow-500 transition-all duration-300 transform ${
+      className={`h-48 sm:h-auto relative bg-amber-50 rounded-lg card-shadow border-2 border-yellow-500 transition-all duration-300 transform ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      } max-w-56 hover:scale-105`}
+      } sm:max-w-56 hover:scale-105`}
     >
       {/* Book Cover Image */}
-      <div className="  bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-br-lg italic font-bold text-sm border-b-2 border-r-2 border-yellow-500">
+      <div className=" absolute right-0 top-0 sm:static bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-bl-lg sm:rounded-br-lg italic font-bold  text-xs sm:text-sm border-b-2 sm:border-r-2  border-l-2 border-yellow-500">
         {`# ${book.id}`}
       </div>
-      <div className="p-4">
-        <img
-          src={
-            book.coverUrl
-              ? book.coverUrl
-              : `${process.env.PUBLIC_URL}/cover.jpg`
-          }
-          alt={book.title.split(" ").slice(0, 15).join(" ")}
-          className="w-full h-48 object-contain rounded-md mb-4"
-        />
 
-        {/* <div></div> */}
-
-        {/* Book Title */}
-        <div className="text-xl font-semibold text-gray-800 mb-2">
-          {book.title.split(" ").length > 15
-            ? book.title.split(" ").slice(0, 10).join(" ") + "..."
-            : book.title}
+      <div className="p-4 || Card all items">
+        <div className=" h-full w-28 sm:h-full sm:w-full sm:static absolute bottom-0 left-0 sm:flex-none flex justify-center items-center">
+          <img
+            src={
+              book.coverUrl
+                ? book.coverUrl
+                : `${process.env.PUBLIC_URL}/cover.jpg`
+            }
+            alt={book.title.split(" ").slice(0, 15).join(" ")}
+            className=" absolute bottom-0 left-0 h-full w-auto object-cover sm:static sm:w-full sm:h-48  sm:object-contain rounded-md sm:mb-4"
+          />
         </div>
+        <div className=" w-40 sm:w-auto sm:static absolute left-32 top-10">
+          {/* Book Title */}
+          <div className=" text-sm sm:text-xl font-semibold text-gray-800 mb-2">
+            {book.title.split(" ").length > 15
+              ? book.title.split(" ").slice(0, 10).join(" ") + "..."
+              : book.title}
+          </div>
 
-        {/* Author Name */}
-        <p className="text-sm text-gray-600 mb-2">
-          <span className="font-semibold">Author:</span> {book.author || "N/A"}
-        </p>
+          {/* Author Name */}
+          <p className=" text-xs sm:text-sm text-gray-600 mb-2">
+            <span className="font-semibold">Author:</span>{" "}
+            {book.author || "N/A"}
+          </p>
 
-        {/* Book Genre */}
-        <p className="text-sm text-gray-600 italic mb-2 pb-10">
-          <span className="font-semibold">Genre:</span>{" "}
-          {cleaningGenreData(book.genre)}
-        </p>
+          {/* Book Genre */}
+          <p className=" truncate text-xs sm:text-sm text-gray-600 italic mb-2 pb-10">
+            <span className="font-semibold">Genre:</span>{" "}
+            {cleaningGenreData(book.genre)}
+          </p>
+        </div>
       </div>
       <div className="flex w-fit gap-3 absolute bottom-3 right-3 ">
         {!isAdded ? (
           <button
-            className="flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full"
+            className="bg-amber-50 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full"
             onClick={handleAdd}
           >
             <svg
