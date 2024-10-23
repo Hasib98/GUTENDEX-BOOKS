@@ -11,7 +11,10 @@ export default function Search({
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All categories");
-  const [userSearch, setUserSearch] = useLocalStorage([], "usersearch");
+  const [userSearch, setUserSearch] = useLocalStorage(
+    ["", "All categories"],
+    "usersearch"
+  );
   useEffect(() => {
     setUserSearch([search, category]);
   }, [search, category, setUserSearch]);
