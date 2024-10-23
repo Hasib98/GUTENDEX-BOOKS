@@ -37,10 +37,10 @@ export default function App() {
           onSetQuery={setQuery}
           isWishlistButtonClicked={isWishlistButtonClicked}
         />
-        {/* <Wishlist
+        <Wishlist
           onWishlistButtonClicked={setIsWishlistButtonClicked}
           wishlist={wishlist}
-        /> */}
+        />
         <NumResults count={data?.count} />
       </Navbar>
       {/* >>>>>>>>>>>>>>> */}
