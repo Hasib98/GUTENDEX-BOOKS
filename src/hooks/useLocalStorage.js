@@ -8,7 +8,7 @@ export function useLocalStorage(initialState, key) {
 
   useEffect(
     function () {
-      localStorage.setItem("wishlist", JSON.stringify(value));
+      localStorage.setItem(key, JSON.stringify(value));
     },
     [value, key]
   );

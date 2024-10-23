@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { defineURL } from "../utils/utils";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 export default function Search({
   pageNumber,
   onsetPageNumber,
@@ -10,6 +11,10 @@ export default function Search({
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All categories");
+  const [userSearch, setUserSearch] = useLocalStorage([], "usersearch");
+  useEffect(() => {
+    setUserSearch([search, category]);
+  }, [search, category, setUserSearch]);
 
   useEffect(() => {
     if (isHomeBtnClicked) {
@@ -17,6 +22,7 @@ export default function Search({
       setCategory("All categories");
       onsetPageNumber(1);
     }
+
     return () => onHomebtnClicked(false);
   }, [isHomeBtnClicked, onsetPageNumber, onHomebtnClicked]);
 
@@ -29,6 +35,11 @@ export default function Search({
   useEffect(() => {
     onSetQuery(url);
   }, [onSetQuery, url]);
+
+  useEffect(() => {
+    setSearch(userSearch[0]);
+    setCategory(userSearch[1]);
+  }, []);
 
   const categories = [
     "All categories",
