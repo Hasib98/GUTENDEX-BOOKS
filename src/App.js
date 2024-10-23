@@ -129,8 +129,8 @@ function LeftArrow({ onSetPageNumber }) {
 }
 function RightArrow({ data, onSetPageNumber }) {
   function handleClick() {
-    onSetPageNumber((e) => data?.next && e + 1);
-    // onSetQuery(data?.next);
+    data?.next && onSetPageNumber((e) => e + 1);
+    // onSetPageNumber((e) => data?.next && e + 1);
   }
   return (
     <button

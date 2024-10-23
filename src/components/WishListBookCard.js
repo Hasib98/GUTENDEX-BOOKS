@@ -74,7 +74,10 @@ export default function WishlistBookCard({ book, index, onDeleteWishlist }) {
         </p>
       </div>
       <div className="flex w-fit gap-3 absolute bottom-3 right-3 ">
-        <div className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full">
+        <button
+          className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full"
+          onClick={() => window.open(book.bookread, "_blank")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 text-amber-600"
@@ -89,7 +92,7 @@ export default function WishlistBookCard({ book, index, onDeleteWishlist }) {
               d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );

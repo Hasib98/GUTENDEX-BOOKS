@@ -23,6 +23,7 @@ export default function BookCard({
           : book.title,
       author: book.author || "N/A",
       genre: cleaningGenreData(book.genre),
+      bookread: book.bookread,
     };
 
     onAddWishlist(newAddedBook);
@@ -123,7 +124,10 @@ export default function BookCard({
             </svg>
           </button>
         )}
-        <div className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full">
+        <button
+          className="bg-amber-200 flex items-center justify-center flex-1 size-fit p-2 border  border-amber-600 rounded-full"
+          onClick={() => window.open(book.bookread, "_blank")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 text-amber-600"
@@ -138,7 +142,7 @@ export default function BookCard({
               d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );

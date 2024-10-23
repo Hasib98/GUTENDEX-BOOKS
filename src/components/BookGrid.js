@@ -22,6 +22,7 @@ export default function BookGrid({
               author: book.authors.map((author) => author.name).join(", "),
               genre: book.bookshelves || ["Unknown Genre"],
               id: book.id,
+              bookread: book.formats["text/html"], // Access the book URL here
             }}
             isAdded={ids.includes(book.id)}
           />
