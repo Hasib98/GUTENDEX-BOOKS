@@ -24,7 +24,7 @@ export default function Wishlist({ wishlist, onWishlistButtonClicked }) {
           hasWishlist
             ? "bg-teal-100  text-teal-700 hover:bg-teal-200"
             : "bg-amber-100  text-amber-700 hover:bg-amber-200"
-        } sm:h-10 w-auto p-2 rounded-xl font-nunito font-bold flex items-center justify-center sm:border-2 border-slate-400 active:ring-2 ring-sky-300 sm:static absolute bottom-2 right-2 h-8 text-sm sm:text-base `}
+        } sm:h-10 w-auto p-2 rounded-xl font-nunito font-bold flex items-center justify-center sm:border-2 border-slate-400 active:ring-2 ring-sky-300 sm:static absolute bottom-2 right-2 h-8 text-sm sm:text-base`}
         onClick={handleClick}
       >
         📃 Wishlist

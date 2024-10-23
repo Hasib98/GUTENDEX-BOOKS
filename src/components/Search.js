@@ -43,7 +43,7 @@ export default function Search({
   ];
   if (isWishlistButtonClicked)
     return (
-      <div className="text-3xl font-nunito font-extrabold text-gray-900">
+      <div className="relative left-2 top-4 sm:static text-2xl sm:text-3xl font-nunito font-extrabold text-gray-900">
         My Wishlist 📃
       </div>
     );
