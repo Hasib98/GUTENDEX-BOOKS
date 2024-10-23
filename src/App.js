@@ -13,6 +13,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
   const [isWishlistButtonClicked, setIsWishlistButtonClicked] = useState(false);
+  const [isHomeBtnClicked, setIsHomeBtnClicked] = useState(false);
 
   const { data, loading, error } = useFetch(query);
 
@@ -30,12 +31,17 @@ export default function App() {
   return (
     <>
       <Navbar>
-        <Title />
+        <Title
+          onWishlistButtonClicked={setIsWishlistButtonClicked}
+          onHomeBtnClicked={setIsHomeBtnClicked}
+        />
         <Search
           pageNumber={pageNumber}
           onsetPageNumber={setPageNumber}
           onSetQuery={setQuery}
           isWishlistButtonClicked={isWishlistButtonClicked}
+          isHomeBtnClicked={isHomeBtnClicked}
+          onHomebtnClicked={setIsHomeBtnClicked}
         />
         <Wishlist
           onWishlistButtonClicked={setIsWishlistButtonClicked}

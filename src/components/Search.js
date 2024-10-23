@@ -5,9 +5,21 @@ export default function Search({
   onsetPageNumber,
   onSetQuery,
   isWishlistButtonClicked,
+  isHomeBtnClicked,
+  onHomebtnClicked,
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All categories");
+
+  useEffect(() => {
+    console.log("called");
+    if (isHomeBtnClicked) {
+      setSearch("");
+      setCategory("All categories");
+      onsetPageNumber(1);
+    }
+    return () => onHomebtnClicked(false);
+  }, [isHomeBtnClicked, onsetPageNumber]);
 
   useEffect(() => {
     onsetPageNumber(1);

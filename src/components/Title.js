@@ -1,5 +1,14 @@
-export default function Title() {
+export default function Title({ onWishlistButtonClicked, onHomeBtnClicked }) {
+  function handleClick() {
+    onWishlistButtonClicked(false);
+    onHomeBtnClicked(true);
+  }
   return (
-    <div className="font-vastshado text-black font-bold">📚 Gutendex Books</div>
+    <button
+      className="hover:bg-gray-300 p-2 rounded-2xl font-vastshado text-black font-bold"
+      onClick={handleClick}
+    >
+      📚 Gutendex Books
+    </button>
   );
 }

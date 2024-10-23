@@ -14,6 +14,7 @@ export default function Wishlist({ wishlist, onWishlistButtonClicked }) {
 
   useEffect(() => {
     wishlist.length < 1 ? onWishlistButtonClicked(false) : setHasWishlist(true);
+    return () => setHasWishlist(false);
   }, [wishlist, onWishlistButtonClicked]);
 
   return (
