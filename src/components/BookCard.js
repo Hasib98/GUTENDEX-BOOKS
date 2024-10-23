@@ -47,7 +47,7 @@ export default function BookCard({
       } sm:max-w-56 hover:scale-105`}
     >
       {/* Book Cover Image */}
-      <div className=" absolute right-0 top-0 sm:static bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-bl-lg sm:rounded-br-lg italic font-bold  text-xs sm:text-sm border-b-2 sm:border-r-2  border-l-2 border-yellow-500">
+      <div className=" absolute right-0 top-0 sm:static bg-amber-200 pl-2 pr-4 pb-1 pt-1 w-fit  rounded-bl-lg sm:rounded-br-lg italic font-bold  text-xs sm:text-sm border-b-2 sm:border-r-2 sm:border-l-0  border-l-2 border-yellow-500">
         {`# ${book.id}`}
       </div>
 

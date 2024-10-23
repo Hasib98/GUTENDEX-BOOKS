@@ -9,10 +9,7 @@ export default function BookGrid({
 }) {
   return (
     <div className="p-2 sm:p-8">
-      <div
-        className=" grid gap-8 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
-        // className="flex flex-col gap-5  sm:grid sm:gap-8 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
-      >
+      <div className=" grid gap-8 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
         {books?.map((book, index) => (
           <BookCard
             onAddWishlist={onAddWishlist}

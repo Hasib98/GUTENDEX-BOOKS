@@ -40,7 +40,7 @@ export default function Wishlist({ wishlist, onWishlistButtonClicked }) {
       </button>
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm sm:w-full w-4/5  text-center">
             <h2 className="text-xl font-semibold mb-4">Alert 😦</h2>
             <p className="text-gray-700 mb-6 font-bold">
               You don't have any books on wishlist 🙋🏼‍♂️ please add books

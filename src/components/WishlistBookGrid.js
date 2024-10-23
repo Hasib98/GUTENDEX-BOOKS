@@ -3,7 +3,7 @@ import WishlistBookCard from "./WishListBookCard";
 
 export default function WishlistBookGrid({ books = null, onDeleteWishlist }) {
   return (
-    <div className="p-8">
+    <div className="p-2 sm:p-8">
       <div className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
         {books?.map((book, index) => (
           <WishlistBookCard
