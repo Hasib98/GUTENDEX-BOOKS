@@ -43,13 +43,13 @@ export default function Search({
   ];
   if (isWishlistButtonClicked)
     return (
-      <div className="relative left-2 top-4 sm:static text-2xl sm:text-3xl font-nunito font-extrabold text-gray-900">
+      <div className=" w-11/12 sm:w-6/12 relative left-2 top-4 sm:static text-2xl sm:text-3xl font-nunito font-extrabold text-gray-900 text-center">
         My Wishlist 📃
       </div>
     );
   return (
     <div
-      className="pt-4 sm:pt-0 w-11/12 sm:w-auto flex  focus:ring-2  focus:ring-slate-500"
+      className="pt-4 sm:pt-0 w-11/12 sm:w-6/12 flex  focus:ring-2  focus:ring-slate-500"
       // className="flex focus:ring-2  focus:ring-slate-500"
     >
       <input
