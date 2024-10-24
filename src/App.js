@@ -8,6 +8,7 @@ import NumResults from "./components/NumResults";
 import Wishlist from "./components/Wishlist";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import WishlistBookGrid from "./components/WishlistBookGrid";
+import BookUnavailableIcon from "./components/BookUnavailableIcon ";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -52,12 +53,14 @@ export default function App() {
       {/* >>>>>>>>>>>>>>> */}
       <div className="flex justify-center sm:justify-start sm:scale-100 scale-75">
         {/* <div className=""> */}
-        <PaginationGroup
-          onSetPageNumber={setPageNumber}
-          pageNumber={pageNumber}
-          data={data}
-          onSetQuery={setQuery}
-        />
+        {!error && (
+          <PaginationGroup
+            onSetPageNumber={setPageNumber}
+            pageNumber={pageNumber}
+            data={data}
+            onSetQuery={setQuery}
+          />
+        )}
         {/* </div> */}
       </div>
       {isWishlistButtonClicked ? (
@@ -77,16 +80,17 @@ export default function App() {
             />
           )}
           {error && <ErrorMessage message={error} />}
-          {loading || (
-            <div className="flex justify-center">
-              <PaginationGroup
-                onSetPageNumber={setPageNumber}
-                pageNumber={pageNumber}
-                data={data}
-                onSetQuery={setQuery}
-              />
-            </div>
-          )}
+          {loading ||
+            (!error && (
+              <div className="flex justify-center">
+                <PaginationGroup
+                  onSetPageNumber={setPageNumber}
+                  pageNumber={pageNumber}
+                  data={data}
+                  onSetQuery={setQuery}
+                />
+              </div>
+            ))}
         </>
       )}
     </>
@@ -158,27 +162,6 @@ function RightArrow({ data, onSetPageNumber }) {
     </button>
   );
 }
-function Loader() {
-  return (
-    <div className="flex flex-col  gap-10 items-center justify-center relative top-20">
-      <div className="flex space-x-2">
-        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-100"></div>
-        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-500"></div>
-        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-1000"></div>
-      </div>
-      <div className=" text-lg text-center sm:text-3xl">
-        Please wait, Sometimes It takes time load the Books (loading..⏳)
-      </div>
-    </div>
-  );
-}
-function ErrorMessage({ message }) {
-  return (
-    <p className="error">
-      <span>🚨</span> {message}
-    </p>
-  );
-}
 
 function PaginationGroup({ pageNumber, onSetPageNumber, onSetQuery, data }) {
   return (
@@ -200,5 +183,29 @@ function PaginationGroup({ pageNumber, onSetPageNumber, onSetQuery, data }) {
       />
     </Pagination>
     // </div>
+  );
+}
+
+function ErrorMessage({ message }) {
+  if (message === "Books are not avaiable") return <BookUnavailableIcon />;
+  return (
+    <p className="error">
+      <span>🚨</span> {message}
+    </p>
+  );
+}
+
+function Loader() {
+  return (
+    <div className="flex flex-col  gap-10 items-center justify-center relative top-20">
+      <div className="flex space-x-2">
+        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-100"></div>
+        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-500"></div>
+        <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-1000"></div>
+      </div>
+      <div className="font-nunito font-bold text-lg text-center sm:text-3xl">
+        Please wait, Sometimes It takes time load the Books (loading..⏳)
+      </div>
+    </div>
   );
 }

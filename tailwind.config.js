@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         vastshadow: ["Vast Shadow", "serif"],
         nunito: ["Nunito", "sans-serif"],
+        dynapuff: ["DynaPuff", "system-ui"],
       },
     },
   },
